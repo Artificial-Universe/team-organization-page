@@ -1,4 +1,4 @@
-const fetch = require('node-fetch'); // Certifique-se de que node-fetch está instalado como dependência.
+const fetch = require('node-fetch');
 const fs = require('fs');
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
@@ -9,7 +9,7 @@ async function fetchGithubMembers(page = 1) {
             Authorization: `token ${GITHUB_TOKEN}` // O token é passado nos headers da requisição
         }
     });
-    
+
     console.log('Resposta da API:', response); // Loga a resposta completa para verificar o formato
 
     if (!response.ok) {
