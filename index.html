@@ -36,9 +36,16 @@
     </table>
 
     <script>
+        // Variável para armazenar o token
+        const GITHUB_TOKEN = 'seu-token-aqui';  // Substitua por seu token ou injete via secrets
+
         // Função para buscar os membros da organização com suporte à paginação
         async function fetchGithubMembers(page = 1) {
-            const response = await fetch(`https://api.github.com/orgs/Artificial-Universe/members?per_page=100&page=${page}`);
+            const response = await fetch(`https://api.github.com/orgs/Artificial-Universe/members?per_page=100&page=${page}`, {
+                headers: {
+                    Authorization: `token ${GITHUB_TOKEN}`  // Passa o token nos headers
+                }
+            });
             const githubMembers = await response.json();
             return githubMembers;
         }
