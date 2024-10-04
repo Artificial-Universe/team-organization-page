@@ -1,12 +1,11 @@
 [
   {
     "login": "AIExxplorer",
-    "id": 123456789,
     "html_url": "https://github.com/AIExxplorer"
   },
   {
-    "login": "WagnerRafaelDev",
-    "id": 987654321,
-    "html_url": "https://github.com/WagnerRafaelDev"
+    "login": "ChristianEngProd",
+    "html_url": "https://github.com/ChristianEngProd"
   }
+  // Outros membros aqui
 ]
