@@ -43,13 +43,6 @@
             return githubMembers;
         }
 
-        // Função para carregar o mapeamento das áreas profissionais (JSON)
-        async function fetchProfessionalAreas() {
-            const response = await fetch('team-members.json'); // Certifique-se de que o JSON está no mesmo diretório que este HTML
-            const data = await response.json();
-            return data.professional_areas;
-        }
-
         // Função principal para carregar e combinar os dados
         async function loadTeamMembers() {
             let githubMembers = [];
@@ -67,22 +60,19 @@
                 }
             }
 
-            const professionalAreas = await fetchProfessionalAreas();
             const tbody = document.getElementById('team-members');
 
             githubMembers.forEach(githubMember => {
-                const area = professionalAreas[githubMember.login] || "Área não definida"; 
-
                 // Cria uma nova linha na tabela
                 const row = document.createElement('tr');
 
-                // Coluna com o nome (login ou nome completo)
+                // Coluna com o nome (login do GitHub)
                 const nameCell = document.createElement('td');
-                nameCell.textContent = githubMember.login; // Exibe o login do GitHub
+                nameCell.textContent = githubMember.login; 
 
-                // Coluna com a área profissional
+                // Coluna com a área profissional (vazio inicialmente)
                 const areaCell = document.createElement('td');
-                areaCell.textContent = area;
+                areaCell.textContent = "Área não atribuída"; // Mostra que a área ainda não foi definida
 
                 row.appendChild(nameCell);
                 row.appendChild(areaCell);
