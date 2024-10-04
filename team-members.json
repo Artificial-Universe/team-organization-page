@@ -1,7 +1,12 @@
-{
-    "professional_areas": {
-        "ana-silva": "Front-end",
-        "joao-costa": "Back-end",
-        "maria-oliveira": "Full Stack"
-    }
-}
+[
+  {
+    "login": "AIExxplorer",
+    "id": 123456789,
+    "html_url": "https://github.com/AIExxplorer"
+  },
+  {
+    "login": "WagnerRafaelDev",
+    "id": 987654321,
+    "html_url": "https://github.com/WagnerRafaelDev"
+  }
+]
