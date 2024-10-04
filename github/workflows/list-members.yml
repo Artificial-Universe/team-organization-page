@@ -1,0 +1,26 @@
+name: List Organization Members
+
+on:
+  workflow_dispatch:  # Permite que o workflow seja executado manualmente.
+
+jobs:
+  list-members:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Versão do Node.js que você quer usar.
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: List Members
+      run: |
+        node script.js
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
