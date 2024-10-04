@@ -36,20 +36,39 @@
     </table>
 
     <script>
-        async function fetchTeamMembers() {
+        // Função para buscar os membros da organização
+        async function fetchGithubMembers() {
             const response = await fetch('https://api.github.com/orgs/Artificial-Universe/members');
-            const members = await response.json();
+            const githubMembers = await response.json();
+            return githubMembers;
+        }
+
+        // Função para carregar o mapeamento das áreas profissionais (JSON)
+        async function fetchProfessionalAreas() {
+            const response = await fetch('team-members.json'); // Certifique-se de que o JSON está no mesmo diretório
+            const data = await response.json();
+            return data.professional_areas;
+        }
+
+        // Função principal para carregar e combinar os dados
+        async function loadTeamMembers() {
+            const githubMembers = await fetchGithubMembers();
+            const professionalAreas = await fetchProfessionalAreas();
             const tbody = document.getElementById('team-members');
 
-            members.forEach(member => {
+            githubMembers.forEach(githubMember => {
+                const area = professionalAreas[githubMember.login] || "Área não definida"; // Verifica se há uma área definida
+
+                // Cria uma nova linha na tabela
                 const row = document.createElement('tr');
 
+                // Coluna com o nome (login ou nome completo)
                 const nameCell = document.createElement('td');
-                nameCell.textContent = member.login;
+                nameCell.textContent = githubMember.login; // Exibe o login do GitHub
 
+                // Coluna com a área profissional
                 const areaCell = document.createElement('td');
-                // Aqui você pode adicionar uma lógica para definir a área profissional manualmente, ou se tiver um sistema associado ao login, automatizar.
-                areaCell.textContent = "Definir Área"; // Troque por categorias reais
+                areaCell.textContent = area;
 
                 row.appendChild(nameCell);
                 row.appendChild(areaCell);
@@ -57,7 +76,8 @@
             });
         }
 
-        fetchTeamMembers();
+        // Carregar os dados ao carregar a página
+        loadTeamMembers();
     </script>
 </body>
 </html>
