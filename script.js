@@ -9,7 +9,7 @@ async function fetchGithubMembers(page = 1) {
             Authorization: `token ${GITHUB_TOKEN}` // O token é passado nos headers da requisição
         }
     });
-
+    
     console.log('Resposta da API:', response); // Loga a resposta completa para verificar o formato
 
     if (!response.ok) {
@@ -31,7 +31,6 @@ async function loadTeamMembers() {
     // Buscar membros de forma paginada
     while (moreMembers) {
         const members = await fetchGithubMembers(page);
-
         if (!Array.isArray(members)) {
             throw new Error("Os dados recebidos não são um array.");
         }
@@ -46,7 +45,7 @@ async function loadTeamMembers() {
 
     // Salvando os membros em um arquivo JSON
     fs.writeFileSync('team-members.json', JSON.stringify(githubMembers, null, 2));
-    console.log('Membros da organização salvos em "team-members.json"');
+    console.log("Membros da organização salvos em 'team-members.json'");
 }
 
 loadTeamMembers().catch(error => console.error('Erro ao carregar membros:', error));
