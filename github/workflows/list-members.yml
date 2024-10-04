@@ -1,26 +1,28 @@
 name: List Organization Members
 
 on:
-  workflow_dispatch: # Permite que o workflow seja executado manualmente.
+  workflow_dispatch: # Permite que o workflow seja acionado manualmente
+  schedule:
+    - cron: '0 0 * * *' # Executa o workflow todos os dias à meia-noite UTC
 
 jobs:
   list-members:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: List Members
-        run: |
-          node script.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+    - name: List Members
+      run: |
+        node script.js
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
