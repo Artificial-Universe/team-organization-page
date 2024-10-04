@@ -41,76 +41,34 @@
     </table>
 
     <script>
-        // Função para buscar os membros da organização com suporte à paginação
-        async function fetchGithubMembers(page = 1) {
-            try {
-                const response = await fetch(`https://api.github.com/orgs/Artificial-Universe/members?per_page=100&page=${page}`, {
-                    headers: {
-                        Authorization: `token ${GITHUB_TOKEN}` // GITHUB_TOKEN deve ser configurado via Actions ou ambiente
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Error: ${response.status} ${response.statusText}`);
-                }
-
-                const githubMembers = await response.json();
-                return githubMembers;
-            } catch (error) {
-                throw new Error(`Erro ao buscar membros da página ${page}: ${error.message}`);
-            }
-        }
-
-        // Função principal para carregar todos os membros, página por página
+        // Função para carregar membros de um arquivo JSON estático
         async function loadTeamMembers() {
-            let githubMembers = [];
-            let page = 1;
-            let moreMembers = true;
-
-            // Limpar mensagens de erro
-            document.getElementById('error-message').textContent = '';
-
             try {
-                // Buscar membros de forma paginada
-                while (moreMembers) {
-                    const members = await fetchGithubMembers(page);
-                    if (members.length === 0) {
-                        moreMembers = false; // Se não houver mais membros, paramos a iteração.
-                    } else {
-                        githubMembers = githubMembers.concat(members); // Adiciona os membros da página atual à lista total.
-                        page++;
-                    }
+                const response = await fetch('team-members.json');
+                if (!response.ok) {
+                    throw new Error(`Erro: ${response.status} ${response.statusText}`);
                 }
+                const githubMembers = await response.json();
 
                 const tbody = document.getElementById('team-members');
-
-                if (githubMembers.length === 0) {
-                    document.getElementById('error-message').textContent = 'Nenhum membro encontrado.';
-                }
-
-                githubMembers.forEach(githubMember => {
-                    // Cria uma nova linha na tabela
+                githubMembers.forEach(member => {
                     const row = document.createElement('tr');
 
-                    // Coluna com o nome (login do GitHub)
                     const nameCell = document.createElement('td');
-                    nameCell.textContent = githubMember.login; 
-
-                    // Coluna com a área profissional (vazio inicialmente)
+                    nameCell.textContent = member.login;
                     const areaCell = document.createElement('td');
-                    areaCell.textContent = "Área não atribuída"; // Mostra que a área ainda não foi definida
+                    areaCell.textContent = "Área não atribuída";
 
                     row.appendChild(nameCell);
                     row.appendChild(areaCell);
                     tbody.appendChild(row);
                 });
-
             } catch (error) {
                 document.getElementById('error-message').textContent = `Erro ao carregar membros: ${error.message}`;
             }
         }
 
-        // Carregar os dados ao carregar a página
+        // Carregar os membros no carregamento da página
         loadTeamMembers();
     </script>
 </body>
