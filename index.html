@@ -36,39 +36,43 @@
     </table>
 
     <script>
-        // Função para buscar os membros da organização
-        async function fetchGithubMembers() {
-            const response = await fetch('https://api.github.com/orgs/Artificial-Universe/members');
+        // Função para buscar os membros da organização sem autenticação
+        async function fetchGithubMembers(page = 1) {
+            const response = await fetch(`https://api.github.com/orgs/Artificial-Universe/members?per_page=100&page=${page}`);
             const githubMembers = await response.json();
             return githubMembers;
         }
 
-        // Função para carregar o mapeamento das áreas profissionais (JSON)
-        async function fetchProfessionalAreas() {
-            const response = await fetch('team-members.json'); // Certifique-se de que o JSON está no mesmo diretório
-            const data = await response.json();
-            return data.professional_areas;
-        }
-
         // Função principal para carregar e combinar os dados
         async function loadTeamMembers() {
-            const githubMembers = await fetchGithubMembers();
-            const professionalAreas = await fetchProfessionalAreas();
+            let githubMembers = [];
+            let page = 1;
+            let moreMembers = true;
+
+            // Buscar membros de forma paginada
+            while (moreMembers) {
+                const members = await fetchGithubMembers(page);
+                if (members.length === 0) {
+                    moreMembers = false; // Se não houver mais membros, paramos a iteração.
+                } else {
+                    githubMembers = githubMembers.concat(members); // Adiciona os membros da página atual à lista total.
+                    page++;
+                }
+            }
+
             const tbody = document.getElementById('team-members');
 
             githubMembers.forEach(githubMember => {
-                const area = professionalAreas[githubMember.login] || "Área não definida"; // Verifica se há uma área definida
-
                 // Cria uma nova linha na tabela
                 const row = document.createElement('tr');
 
-                // Coluna com o nome (login ou nome completo)
+                // Coluna com o nome (login do GitHub)
                 const nameCell = document.createElement('td');
-                nameCell.textContent = githubMember.login; // Exibe o login do GitHub
+                nameCell.textContent = githubMember.login; 
 
-                // Coluna com a área profissional
+                // Coluna com a área profissional (vazio inicialmente)
                 const areaCell = document.createElement('td');
-                areaCell.textContent = area;
+                areaCell.textContent = "Área não atribuída"; // Mostra que a área ainda não foi definida
 
                 row.appendChild(nameCell);
                 row.appendChild(areaCell);
