@@ -1,5 +1,5 @@
 const fs = require('fs');
-const fetch = require('node-fetch');
+const fetch = require('node-fetch'); // Certifique-se de que node-fetch está instalado
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
@@ -30,7 +30,7 @@ async function loadTeamMembers() {
 
     // Salvando os membros em um arquivo JSON
     fs.writeFileSync('team-members.json', JSON.stringify(githubMembers, null, 2));
-    console.log("Membros da organização salvos em team-members.json");
+    console.log("Membros da organização salvos em 'team-members.json'");
 }
 
 loadTeamMembers().catch(error => console.error('Erro ao carregar membros:', error));
