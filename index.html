@@ -42,40 +42,40 @@
 
     <script>
         // Função para carregar membros de um arquivo JSON estático
-    async function loadTeamMembers() {
-        try {
-            const response = await fetch('team-members.json');
-            if (!response.ok) {
-                throw new Error(`Erro: ${response.status} ${response.statusText}`);
+        async function loadTeamMembers() {
+            try {
+                const response = await fetch('team-members.json');
+                if (!response.ok) {
+                    throw new Error(`Erro: ${response.status} ${response.statusText}`);
+                }
+
+                const githubMembers = await response.json();
+
+                // Verifica se githubMembers é um array
+                if (!Array.isArray(githubMembers)) {
+                    throw new Error("Os dados recebidos não são um array.");
+                }
+
+                const tbody = document.getElementById('team-members');
+                githubMembers.forEach(member => {
+                    const row = document.createElement('tr');
+
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = member.name ? member.name : member.login;
+                    const areaCell = document.createElement('td');
+                    areaCell.textContent = "Área não atribuída";
+
+                    row.appendChild(nameCell);
+                    row.appendChild(areaCell);
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                document.getElementById('error-message').textContent = `Erro ao carregar membros: ${error.message}`;
             }
-
-            const githubMembers = await response.json();
-
-            // Verifica se githubMembers é um array
-            if (!Array.isArray(githubMembers)) {
-                throw new Error("Os dados recebidos não são um array.");
-            }
-
-            const tbody = document.getElementById('team-members');
-            githubMembers.forEach(member => {
-                const row = document.createElement('tr');
-
-                const nameCell = document.createElement('td');
-                nameCell.textContent = member.login;
-                const areaCell = document.createElement('td');
-                areaCell.textContent = "Área não atribuída";
-
-                row.appendChild(nameCell);
-                row.appendChild(areaCell);
-                tbody.appendChild(row);
-            });
-        } catch (error) {
-            document.getElementById('error-message').textContent = `Erro ao carregar membros: ${error.message}`;
         }
-    }
 
-    // Carregar os membros no carregamento da página
-    loadTeamMembers();
+        // Carregar os membros no carregamento da página
+        loadTeamMembers();
     </script>
 </body>
 </html>
