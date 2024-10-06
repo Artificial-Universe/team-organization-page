@@ -1,14 +1,110 @@
 [
-  {
-    "login": "AIExxplorer",
-    "html_url": "https://github.com/AIExxplorer"
-  },
-  {
-    "login": "ChristianEngProd",
-    "html_url": "https://github.com/ChristianEngProd"
-  },
-  {
-    "login": "JorgeAlmeidaDev",
-    "html_url": "https://github.com/JorgeAlmeidaDev"
-  }
+   {
+      "login": "AIExxplorer",
+      "name": "Wagner Rafael | AIExxplorer",
+      "is_public": true,
+      "role": "Owner"
+   },
+   {
+      "login": "CarmemAdelia",
+      "name": null,
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "ChristianEngProd",
+      "name": "Christian Salmoria",
+      "is_public": true,
+      "role": "Member"
+   },
+   {
+      "login": "DavidDevFull",
+      "name": "David Cristiano",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "devluizmarcolino",
+      "name": "Luiz Henrique Marcolino",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "eltonsantos",
+      "name": "Elton Santos",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "Icedeearth",
+      "name": null,
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "JorgeAlmeidaDev",
+      "name": "Jorge Almeida",
+      "is_public": true,
+      "role": "Member"
+   },
+   {
+      "login": "katyarejane",
+      "name": "Kátia Rejane",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "LeoTuTu1",
+      "name": "Leo Moura",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "mateushsx",
+      "name": "Mateus Henrique",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "matheusfelipeofc",
+      "name": "Matheus Felipe",
+      "is_public": true,
+      "role": "Member"
+   },
+   {
+      "login": "Olympiah-Modesto",
+      "name": "Olympiah Modesto",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "RyanD3g",
+      "name": "Ryan Marinho",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "TheLegMVP",
+      "name": "Gustavo Gomes",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "WagnerRafaelDev",
+      "name": "Wagner Rafael | AIExxplorer",
+      "is_public": true,
+      "role": "Owner"
+   },
+   {
+      "login": "WillSev3ro",
+      "name": "Willian Severo",
+      "is_public": false,
+      "role": "Member"
+   },
+   {
+      "login": "YasminCury",
+      "name": "Yasmin",
+      "is_public": true,
+      "role": "Member"
+   }
 ]
