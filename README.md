@@ -45,18 +45,22 @@ Se você deseja rodar este projeto localmente, siga as instruções abaixo:
    ```bash
    git clone https://github.com/Artificial-Universe/team-organization-page.git
    cd team-organization-page
+   ```
 
 2. **Instale as Dependências: Certifique-se de que você tem o Node.js instalado. Então, rode:**
     ```bash
     npm install
+    ```
 
 3. **Defina o Token do GitHub: Crie um arquivo .env na raiz do projeto e adicione seu GITHUB_TOKEN:** 
     ```bash
     GITHUB_TOKEN=your_github_token
+    ```
 
 4. **Execute o Script: Para listar manualmente os membros da organização:**
     ```bash
     npm start
+    ```
 
 5. **Visualize a Página: Abra o arquivo index.html no seu navegador favorito para visualizar a tabela de membros.**
 
@@ -65,7 +69,8 @@ Se você deseja rodar este projeto localmente, siga as instruções abaixo:
 
     ```bash
     name: List Organization Members
-
+    ```
+```
 on:
   workflow_dispatch:
   schedule:
@@ -91,7 +96,7 @@ jobs:
           node script.js
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-
+```
 
 --- 
 
@@ -106,15 +111,15 @@ Estamos sempre abertos a novas ideias e contribuições! Se você deseja sugerir
 2. Crie uma nova branch com sua funcionalidade ou correção:
 ```bash
 git checkout -b minha-nova-feature
-
+``` 
 3. Commit suas alterações:
 ```bash
 git commit -m 'Adicionando minha nova feature'
-
+```
 4. Push para a branch:
 ```bash
 git push origin minha-nova-feature
-
+```
 5. Abra um Pull Request.
 
 --- 
